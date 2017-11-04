@@ -1,5 +1,6 @@
 package com.samsung.shack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         }
+
     };
 
     @Override
@@ -41,4 +43,11 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+
+
+    public void DashboardPressed() {
+        Intent intent = new Intent(this, Dashboard.class);
+        startActivity(intent);
+
+    }
 }
