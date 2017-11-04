@@ -1,5 +1,6 @@
 package com.samsung.shack;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,11 +8,19 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.content.SharedPreferences;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+    public static final String prefs = "MyPrefsFile";
+    static boolean loggedIn = false;
+    //public static boolean loggedIn = false;
 
+
+
+    /*
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -21,9 +30,6 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);
                     return true;
@@ -32,22 +38,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        SharedPreferences settings = getSharedPreferences(prefs, 0);
+        loggedIn = settings.getBoolean("loggedIn", loggedIn);
+        startLogin(loggedIn);
     }
 
 
 
-    public void DashboardPressed() {
-        Intent intent = new Intent(this, Dashboard.class);
-        startActivity(intent);
+    public void startLogin(boolean loggedIn) {
+        if(!loggedIn) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
+    }
+
+    protected void onStop(){
+        super.onStop();
+        SharedPreferences settings = getSharedPreferences(prefs, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("loggedIn", loggedIn);
+        editor.commit();
     }
 }
