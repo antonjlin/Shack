@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.samsung.drawing.LoginActivity">
+    tools:context="com.samsung.shack.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -74,17 +74,16 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="@dimen/loginButtonWidth"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColor="@color/white"
-
                 android:layout_marginLeft="@dimen/loginPadding"
                 android:layout_marginRight="@dimen/loginPadding"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold"
-                android:src="@drawable/iconvector"
-                android:background = "@drawable/roundedbutton"
+
+                android:layout_marginTop="30dp"
+                android:background="@drawable/roundedbutton"
                 android:backgroundTint="@color/colorPrimary"
-                />
+                android:src="@drawable/iconvector"
+                android:text="@string/action_sign_in"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
