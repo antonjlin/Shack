@@ -28,11 +28,7 @@ public class MainActivity extends AppCompatActivity {
     static JSONArray parcelNamesJson = new JSONArray();
     static JSONArray trackingIDsJson = new JSONArray();
     static JSONArray carrierJson = new JSONArray();
-    Button parcel1 = (Button) findViewById(R.id.parcel1);
-    Button parcel2 = (Button) findViewById(R.id.parcel2);
-    Button parcel3 = (Button) findViewById(R.id.parcel3);
-    Button parcel4 = (Button) findViewById(R.id.parcel4);
-    Button parcel5 = (Button) findViewById(R.id.parcel5);
+
 
 
 
@@ -46,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> carrier = new ArrayList<String>();
 
     //public static boolean loggedIn = false;
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -73,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button parcel1 = (Button) findViewById(R.id.parcel1);
+        Button parcel2 = (Button) findViewById(R.id.parcel2);
+        Button parcel3 = (Button) findViewById(R.id.parcel3);
+        Button parcel4 = (Button) findViewById(R.id.parcel4);
+        Button parcel5 = (Button) findViewById(R.id.parcel5);
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         SharedPreferences settings = getSharedPreferences(database, 0);
         loggedIn = settings.getBoolean("loggedIn", loggedIn);
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(int x = 0; x<parcelNamesJson.length(); x++) {
             try {
-                if(parcelNames != null) {
+                if(parcelNames.get(x) != null) {
                     parcelNames.add((String) parcelNamesJson.get(x));
                     Toast.makeText(this, (String) parcelNamesJson.get(x), Toast.LENGTH_SHORT);
                 }else{
@@ -151,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         }
         for(int x = 0; x<trackingIDsJson.length(); x++) {
             try {
-                if(trackingIDs != null) {
+                if(trackingIDs.get(x) != null) {
                     trackingIDs.add((String) trackingIDsJson.get(x));
                     Toast.makeText(this, (String) trackingIDsJson.get(x), Toast.LENGTH_SHORT);
                 }else{
@@ -164,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         }
         for(int x = 0; x<carrierJson.length(); x++) {
             try {
-                if(carrier != null) {
+                if(carrier.get(x) != null) {
                     carrier.add((String) carrierJson.get(x));
                     Toast.makeText(this, (String) carrierJson.get(x), Toast.LENGTH_SHORT);
                 } else{
