@@ -1,8 +1,4 @@
-package com.samsung.android.sdk.pen.pg.example5_7;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+package com.samsung.shack.penExamples;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,12 +23,16 @@ import com.samsung.android.sdk.pen.document.SpenObjectBase;
 import com.samsung.android.sdk.pen.document.SpenObjectStroke;
 import com.samsung.android.sdk.pen.document.SpenPageDoc;
 import com.samsung.android.sdk.pen.engine.SpenSurfaceView;
-import com.samsung.android.sdk.pen.pg.tool.SDKUtils;
+;
 import com.samsung.android.sdk.pen.recognition.SpenCreationFailureException;
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerification;
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerificationInfo;
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerificationManager;
-import com.samsung.spensdk3.example.R;
+import com.samsung.shack.R;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PenSample5_7_SignatureRegistration extends Activity {
 
@@ -190,7 +190,7 @@ public class PenSample5_7_SignatureRegistration extends Activity {
         mSignatureList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                int position, long id) {
+                                    int position, long id) {
                 if (position == LIST_REGISRTATION) {
                     ArrayList<SpenObjectBase> strokeList =
                         mSpenPageDoc.getObjectList(SpenObjectBase.TYPE_STROKE);
@@ -292,7 +292,7 @@ public class PenSample5_7_SignatureRegistration extends Activity {
 
         @Override
         public View getView(int position, View convertView,
-            ViewGroup parent) {
+                            ViewGroup parent) {
             if (convertView == null) {
                 convertView = Inflater.inflate(
                     R.layout.signature_list_item, parent, false);

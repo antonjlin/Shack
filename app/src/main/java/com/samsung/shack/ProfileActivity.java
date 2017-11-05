@@ -31,8 +31,12 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         signature.setOnClickListener(new View.OnClickListener(){
+            @Override
             public void onClick(View view){
-
+                SharedPreferences settings = getSharedPreferences(prefs, 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putBoolean("loggedIn", false);
+                editor.commit();
             }
         });
 

@@ -1,8 +1,5 @@
-package com.samsung.android.sdk.pen.pg.example5_7;
+package com.samsung.shack.penExamples;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -20,6 +17,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.samsung.android.sdk.SsdkUnsupportedException;
 import com.samsung.android.sdk.pen.Spen;
 import com.samsung.android.sdk.pen.document.SpenNoteDoc;
@@ -34,6 +32,10 @@ import com.samsung.android.sdk.pen.recognition.SpenSignatureVerification.ResultL
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerificationInfo;
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerificationManager;
 import com.samsung.spensdk3.example.R;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PenSample5_7_SignatureVerification extends Activity {
 
@@ -217,7 +219,7 @@ public class PenSample5_7_SignatureVerification extends Activity {
         mSignatureList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                int position, long id) {
+                                    int position, long id) {
                 if (position == LIST_VERIFICATION) {
                     ArrayList<SpenObjectBase> strokeList =
                         mSpenPageDoc.getObjectList(SpenObjectBase.TYPE_STROKE);
@@ -261,7 +263,7 @@ public class PenSample5_7_SignatureVerification extends Activity {
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(
-                                    DialogInterface dialog, int which) {
+                                        DialogInterface dialog, int which) {
                                     mVerificationLevel = which;
                                 }
                             })
@@ -326,7 +328,7 @@ public class PenSample5_7_SignatureVerification extends Activity {
 
         @Override
         public View getView(int position, View convertView,
-            ViewGroup parent) {
+                            ViewGroup parent) {
             if (convertView == null) {
                 convertView = Inflater.inflate(
                     R.layout.signature_list_item, parent, false);

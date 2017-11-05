@@ -1,7 +1,4 @@
-package com.samsung.android.sdk.pen.pg.example5_7;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.samsung.shack.penExamples;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -27,6 +24,9 @@ import com.samsung.android.sdk.pen.recognition.SpenSignatureVerification;
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerificationInfo;
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerificationManager;
 import com.samsung.spensdk3.example.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PenSample5_7_Signature extends Activity {
 
@@ -144,7 +144,7 @@ public class PenSample5_7_Signature extends Activity {
         mSignatureList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                int position, long id) {
+                                    int position, long id) {
                 int registeredCount = mSpenSignatureVerification.getRegisteredCount();
                 int minimumRequiredCount = mSpenSignatureVerification.getMinimumRequiredCount();
                 if (position == LIST_CHECK_SIGNATURE) {
@@ -173,7 +173,7 @@ public class PenSample5_7_Signature extends Activity {
 					// Delete the registered signature.
                     if (!mSpenSignatureVerification.isRegistrationCompleted()) {
                         Toast.makeText(mContext, "Signature is not registered.",
-                            Toast.LENGTH_SHORT).show();                    
+                            Toast.LENGTH_SHORT).show();
                     } else {
 						try{
 							mSpenSignatureVerification.unregisterAll();
@@ -182,7 +182,7 @@ public class PenSample5_7_Signature extends Activity {
 						}
                         if (mSpenSignatureVerification.getRegisteredCount() == 0)
                             Toast.makeText(mContext, "Registered signature is deleted.",
-                                Toast.LENGTH_SHORT).show();                    
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
                 mSignatureAdapter.notifyDataSetChanged();
@@ -226,7 +226,7 @@ public class PenSample5_7_Signature extends Activity {
 
         @Override
         public View getView(int position, View convertView,
-            ViewGroup parent) {
+                            ViewGroup parent) {
             if (convertView == null) {
                 convertView =
                     Inflater.inflate(R.layout.signature_list_item, parent,

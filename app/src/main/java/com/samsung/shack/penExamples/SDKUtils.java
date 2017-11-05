@@ -1,4 +1,4 @@
-package com.samsung.android.sdk.pen.pg.tool;
+package com.samsung.shack.penExamples;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,6 +13,7 @@ import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.widget.Toast;
+
 import com.samsung.android.sdk.SsdkUnsupportedException;
 import com.samsung.android.sdk.pen.Spen;
 
