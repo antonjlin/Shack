@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     //public static boolean loggedIn = false;
 
 
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -64,21 +63,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+    static Button parcel1;
+    static Button parcel2;
+    static Button parcel3;
+    static Button parcel4;
+    static Button parcel5;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final Intent look = new Intent(mContext,ParcelActivity.class);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button parcel1 = (Button) findViewById(R.id.parcel1);
-        Button parcel2 = (Button) findViewById(R.id.parcel2);
-        Button parcel3 = (Button) findViewById(R.id.parcel3);
-        Button parcel4 = (Button) findViewById(R.id.parcel4);
-        Button parcel5 = (Button) findViewById(R.id.parcel5);
+        parcel1 = (Button) findViewById(R.id.parcel1);
+        parcel2 = (Button) findViewById(R.id.parcel2);
+        parcel3 = (Button) findViewById(R.id.parcel3);
+        parcel4 = (Button) findViewById(R.id.parcel4);
+        parcel5 = (Button) findViewById(R.id.parcel5);
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         SharedPreferences settings = getSharedPreferences(database, 0);
         loggedIn = settings.getBoolean("loggedIn", loggedIn);
         startLogin(loggedIn);
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -107,39 +114,57 @@ public class MainActivity extends AppCompatActivity {
                 onCreateParcelClicked();
             }
         });
+
+
+        parcel1 = (Button) findViewById(R.id.parcel1);
+       parcel2 = (Button) findViewById(R.id.parcel2);
+        parcel3 = (Button) findViewById(R.id.parcel3);
+         parcel4 = (Button) findViewById(R.id.parcel4);
+         parcel5 = (Button) findViewById(R.id.parcel5);
+
+
         parcel1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               /* look.putExtra("carrier", carrier.get(0));
+                look.putExtra("TRACKING ID", trackingIDs.get(0));*/
+                startActivity(look);
 
             }
         });
 
         parcel2.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
-
+                startActivity(look);
             }
         });
         parcel3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(look);
+
 
             }
         });
-        parcel3.setOnClickListener(new View.OnClickListener() {
+        parcel4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                startActivity(look);
+
+
             }
         });
-        parcel3.setOnClickListener(new View.OnClickListener() {
+        parcel5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(look);
+
 
             }
         });
 
-        for(int x = 0; x<parcelNamesJson.length(); x++) {
+    /*    for(int x = 0; x<parcelNamesJson.length(); x++) {
             try {
                 if(parcelNames.get(x) != null) {
                     parcelNames.add((String) parcelNamesJson.get(x));
@@ -176,10 +201,12 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-
-
-
+        if(parcelNames.get(0)!=null){parcel1.setText(parcelNames.get(0));}
+        if(parcelNames.get(1)!=null){parcel2.setText(parcelNames.get(1));}
+        if(parcelNames.get(2)!=null){parcel3.setText(parcelNames.get(2));}
+        if(parcelNames.get(3)!=null){parcel4.setText(parcelNames.get(3));}
+        if(parcelNames.get(4)!=null){parcel5.setText(parcelNames.get(4));}
+*/
     }
         //onProfileClicked();
 

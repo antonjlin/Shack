@@ -41,6 +41,10 @@
             android:name=".NewParcelActivity"
             android:label="@string/title_activity_login"></activity>
         <activity
+            android:name=".ParcelActivity"
+            android:label="@string/title_activity_login"></activity>
+
+        <activity
             android:name=".ProfileActivities.SpenTestsActivity"
             android:label="@string/title_activity_spentests"></activity>
         <activity

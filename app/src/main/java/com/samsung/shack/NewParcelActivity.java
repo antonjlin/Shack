@@ -46,6 +46,8 @@ public class NewParcelActivity extends AppCompatActivity implements LoaderCallba
             public void onClick(View view) {
                 MainActivity.parcelNames.add(parcelName);
                 MainActivity.trackingIDs.add(trackingID);
+                MainActivity.parcel1.setText(parcelName);
+
             }
         });
 
