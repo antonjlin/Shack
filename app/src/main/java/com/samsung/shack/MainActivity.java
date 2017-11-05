@@ -3,6 +3,7 @@ package com.samsung.shack;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_myProfile:
                     mTextMessage.setText(R.string.title_myprofile);
+                    onProfileClicked();
                     return true;
             }
             return false;
@@ -47,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(prefs, 0);
         loggedIn = settings.getBoolean("loggedIn", loggedIn);
         startLogin(loggedIn);
+    }
+    public void onProfileClicked(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
 
