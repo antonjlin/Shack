@@ -4,6 +4,7 @@ package com.samsung.shack;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -20,12 +21,13 @@ public class ProfileActivity extends AppCompatActivity {
     //public static boolean loggedIn = false;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        final Intent intent = new Intent(this, SpenTests.class );
+        final Intent intent1 = new Intent(this, SpenTests.class );
         Button signature = findViewById(R.id.signature);
         Button logout = findViewById(R.id.signature);
 
@@ -39,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
         signature.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(intent);
+                startActivity(intent1);
 
             }
         });
