@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:uses-permissionandroid="http://schemas.android.com/apk/res-auto"
     package="com.samsung.shack">
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-feature android:name="android.hardware.fingerprint"
         android:required="false"/>
     <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name=
+    "com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
