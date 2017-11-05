@@ -19,7 +19,7 @@ android {
 
     productFlavors {
     }
-    repositories{
+    repositories {
         flatDir {
             dir 'libs'
         }

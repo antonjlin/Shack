@@ -19,7 +19,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView mTextMessage;
     public static final String prefs = "MyPrefsFile";
     static boolean loggedIn = false;
-    Context mContext = this;
+    Context loginContext = this;
 
     //public static boolean loggedIn = false;
 
@@ -35,7 +35,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         Button signature = findViewById(R.id.signature);
         Button logout = findViewById(R.id.logout);
-        Button setFingerprint = findViewById(R.id.fingerprint);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,9 +45,10 @@ public class ProfileActivity extends AppCompatActivity {
                 editor.putString("email", null);
                 editor.putString("pass", null);
                 editor.commit();
-                Toast.makeText(mContext, settings.getString("email", ""),Toast.LENGTH_SHORT);
-                Toast.makeText(mContext, settings.getString("pass", ""),Toast.LENGTH_SHORT);
-                startActivity(loginPage);editor.commit();editor.commit();
+                Toast.makeText(loginContext, settings.getString("email", ""),Toast.LENGTH_LONG);
+                Toast.makeText(loginContext, settings.getString("pass", ""),Toast.LENGTH_LONG);
+                startActivity(loginPage);
+                editor.commit();
             }
         });
         signature.setOnClickListener(new View.OnClickListener(){

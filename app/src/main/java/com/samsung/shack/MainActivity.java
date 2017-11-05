@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.content.SharedPreferences;
 import android.widget.Toast;
@@ -53,27 +55,37 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(database, 0);
         loggedIn = settings.getBoolean("loggedIn", loggedIn);
         startLogin(loggedIn);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item){
-                Toast.makeText(mContext, "Hello",Toast.LENGTH_SHORT);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Toast.makeText(mContext, "Hello", Toast.LENGTH_SHORT);
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         //mTextMessage.setText(R.string.title_home);
                         return true;
                     case R.id.navigation_myProfile:
-                       // mTextMessage.setText(R.string.title_myprofile);
+                        // mTextMessage.setText(R.string.title_myprofile);
                         onProfileClicked();
                         return true;
                 }
                 return false;
 
             }
+
         });
 
-        Toast.makeText(mContext, "Hello",Toast.LENGTH_SHORT);
-        //onProfileClicked();
+        FloatingActionButton addParcel = findViewById(R.id.floatingActionButton2);
+        addParcel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences settings = getSharedPreferences(MainActivity.database, 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("pranavisgay", "pranav is very gay");
+            }
+        });
     }
+        //onProfileClicked();
+
     public void onProfileClicked(){
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
