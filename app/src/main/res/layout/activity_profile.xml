@@ -19,7 +19,13 @@
         android:paddingTop="20dp"
         android:text="Set Fingerprint"
         android:textSize="30dp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorPrimary"
         android:visibility="visible" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
     <Button
         android:id="@+id/signature"
@@ -28,6 +34,8 @@
         android:paddingTop="20dp"
         android:text="Set Signature"
         android:textSize="30dp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorPrimary"
         android:visibility="visible" />
 
 </LinearLayout>
