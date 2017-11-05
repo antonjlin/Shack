@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-
 android {
+
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.samsung.shack"
@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -19,15 +20,13 @@ android {
 
     productFlavors {
     }
-    repositories{
-        flatDir {
-            dir 'libs'
-        }
+
+}
+repositories {
+    flatDir {
+        dir 'libs'
     }
 }
-
-
-
 dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
@@ -37,5 +36,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation files('libs/pass-v1.2.6.jar')
     implementation files('libs/sdk-v1.0.0.jar')
-    compile(name: 'pen-v5.0.0_full', ext: 'aar')
+    implementation(name: 'pen-v5.0.0_full', ext: 'aar')
+}
+
+repositories {
+    maven {
+        url '-Djava.library.path = </home/pranav/AndroidStudioProjects/Shack/app/libs/pen-v5.0.0_full.aar>'
+    }
 }
