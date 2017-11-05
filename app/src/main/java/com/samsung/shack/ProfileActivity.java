@@ -27,6 +27,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         final Intent intent = new Intent(this, SpenTests.class );
         Button signature = findViewById(R.id.signature);
+        Button logout = findViewById(R.id.signature);
+
         Button setFingerprint = findViewById(R.id.fingerprint);
         setFingerprint.setOnClickListener(new View.OnClickListener() {
             @Override
