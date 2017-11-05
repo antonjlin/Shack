@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     //public static boolean loggedIn = false;
 
 
-
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
