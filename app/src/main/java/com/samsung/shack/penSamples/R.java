@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.samsung.shack.PenSamples;
+package com.samsung.shack.penSamples;
 
 public final class R {
     public static final class anim {

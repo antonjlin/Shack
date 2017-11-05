@@ -4,6 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_myprofile">My Profile</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_profile">Profile</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

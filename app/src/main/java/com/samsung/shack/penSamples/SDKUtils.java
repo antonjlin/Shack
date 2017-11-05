@@ -1,4 +1,4 @@
-package com.samsung.shack.PenSamples;
+package com.samsung.shack.penSamples;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.samsung.shack.ProfileActivity">
 
-    <!-- Login progress -->
+
 
     <Button
         android:id="@+id/fingerprint"

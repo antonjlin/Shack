@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.samsung.shack.ProfileActivities.SpenTests;
+
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -22,6 +24,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        final Intent intent = new Intent(this, SpenTests.class );
         Button signature = findViewById(R.id.signature);
         Button setFingerprint = findViewById(R.id.fingerprint);
         setFingerprint.setOnClickListener(new View.OnClickListener() {
@@ -33,12 +37,15 @@ public class ProfileActivity extends AppCompatActivity {
         signature.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                SharedPreferences settings = getSharedPreferences(prefs, 0);
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putBoolean("loggedIn", false);
-                editor.commit();
+                startActivity(intent);
+
             }
         });
+        /* logout code
+        SharedPreferences settings = getSharedPreferences(prefs, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("loggedIn", false);
+        editor.commit();*/
 
     }
 

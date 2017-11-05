@@ -1,4 +1,4 @@
-package com.samsung.shack.PenSamples;
+package com.samsung.shack.penSamples;
 
 import android.app.Activity;
 import android.app.AlertDialog;

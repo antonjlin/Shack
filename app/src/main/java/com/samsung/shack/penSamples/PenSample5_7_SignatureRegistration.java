@@ -1,9 +1,7 @@
-package com.samsung.shack.PenSamples;
+package com.samsung.shack.penSamples;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.Display;
@@ -25,44 +23,42 @@ import com.samsung.android.sdk.pen.document.SpenObjectBase;
 import com.samsung.android.sdk.pen.document.SpenObjectStroke;
 import com.samsung.android.sdk.pen.document.SpenPageDoc;
 import com.samsung.android.sdk.pen.engine.SpenSurfaceView;
-//import com.samsung.android.sdk.pen.pg.tool.SDKUtils;
 import com.samsung.android.sdk.pen.recognition.SpenCreationFailureException;
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerification;
-import com.samsung.android.sdk.pen.recognition.SpenSignatureVerification.ResultListener;
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerificationInfo;
 import com.samsung.android.sdk.pen.recognition.SpenSignatureVerificationManager;
-//import com.samsung.spensdk3.example.R;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PenSample5_7_SignatureVerification extends Activity {
-
-    public ArrayList<ListItem> mSignatureListItem;
+public class PenSample5_7_SignatureRegistration extends Activity {
 
     private Context mContext = null;
     private SpenNoteDoc mSpenNoteDoc;
     private SpenPageDoc mSpenPageDoc;
-    public SpenSurfaceView mSpenSurfaceView;
+    private SpenSurfaceView mSpenSurfaceView;
 
     public ListAdapter mSignatureAdapter;
+    public ArrayList<ListItem> mSignatureListItem;
+
+    public int mSignatureRegistrationNum = 0;
+    public int mSignatureRegistrationNumMax;
     public ListView mSignatureList;
 
-    int mVerificationLevel =
-        SpenSignatureVerification.VERIFICATION_LEVEL_MEDIUM;
+    //private int mResult = 0;
 
     private SpenSignatureVerificationManager mSpenSignatureVerificationManager;
     private SpenSignatureVerification mSpenSignatureVerification;
 
-    private final int LIST_VERIFICATION = 0;
-    private final int LIST_VERIFICATION_LEVEL = 1;
-    private final int LIST_RETRY = 2;
+    private final int LIST_REGISRTATION = 0;
+    private final int LIST_RETRY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signature_verification);
+        setContentView(R.layout.activity_signature_registration);
         mContext = this;
 
 		// Initialize Spen
@@ -117,15 +113,14 @@ public class PenSample5_7_SignatureVerification extends Activity {
 		// Set PageDoc to View
         mSpenSurfaceView.setPageDoc(mSpenPageDoc, true);
 
-        Toast.makeText(mContext, "Draw your signature to verify.",
+        // Set Callback Listener(Interface)
+        Toast.makeText(mContext, "Draw your signature to register.",
             Toast.LENGTH_SHORT).show();
 
 		// Set the List
         mSignatureListItem = new ArrayList<ListItem>();
-        mSignatureListItem.add(new ListItem("[Verification]",
-            "Verify the signature"));
-        mSignatureListItem.add(new ListItem("[Verification Level]",
-            "Select verification level"));
+        mSignatureListItem.add(new ListItem("[Registration]",
+            "Save your signature to register"));
         mSignatureListItem.add(new ListItem("[Retry]",
             "Clear the screen to redraw signature"));
 
@@ -166,12 +161,14 @@ public class PenSample5_7_SignatureVerification extends Activity {
             return;
         } catch (InstantiationException e) {
             e.printStackTrace();
-            Toast.makeText(mContext, "Failed to access the SpenSignatureVerificationManager constructor.",
+            Toast.makeText(mContext,
+                "Failed to access the SpenSignatureVerificationManager constructor.",
                 Toast.LENGTH_SHORT).show();
             return;
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-            Toast.makeText(mContext, "Failed to access the SpenSignatureVerificationManager field or method.",
+            Toast.makeText(mContext,
+                "Failed to access the SpenSignatureVerificationManager field or method.",
                 Toast.LENGTH_SHORT).show();
             return;
         } catch (SpenCreationFailureException e) {
@@ -186,41 +183,14 @@ public class PenSample5_7_SignatureVerification extends Activity {
             return;
         }
 
-        try {
-            mSpenSignatureVerification
-                .setResultListener(new ResultListener() {
-                    @Override
-                    public void onResult(List<SpenObjectStroke> input,
-                        boolean result) {
-						// Check if the signature verification was successful.
-                        if (result) {
-                            Toast.makeText(mContext, "Success!",
-                                Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(mContext, "Failure!",
-                                Toast.LENGTH_SHORT).show();
-                        }
-                        mSpenPageDoc.removeAllObject();
-                    mSpenSurfaceView.update();
-                    }
-                });
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            Toast.makeText(mContext, "SpenSignatureVerification is not loaded.",
-                Toast.LENGTH_SHORT).show();
-            return;
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(mContext, "SpenSignatureVerification is not loaded.",
-                Toast.LENGTH_SHORT).show();
-            return;
-        }
-
+        //mSpenSignatureVerification.unregisterAll();
+        mSignatureRegistrationNumMax =
+            mSpenSignatureVerification.getMinimumRequiredCount();
         mSignatureList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if (position == LIST_VERIFICATION) {
+                if (position == LIST_REGISRTATION) {
                     ArrayList<SpenObjectBase> strokeList =
                         mSpenPageDoc.getObjectList(SpenObjectBase.TYPE_STROKE);
                     if (strokeList.size() > 0) {
@@ -231,59 +201,54 @@ public class PenSample5_7_SignatureVerification extends Activity {
                             list.add((SpenObjectStroke) strokeList.get(i));
                         }
 
-						// Send a request to verify the signature against the registered ones.
+						// Register the object list as a signature.
                         try {
-                            mSpenSignatureVerification.request(list);
+                            mSpenSignatureVerification.prepareRegistration(list);
                         } catch (IllegalStateException e) {
                             e.printStackTrace();
                             Toast.makeText(mContext, "SpenSignatureVerification is not loaded.",
                                 Toast.LENGTH_SHORT).show();
                             return;
-                        } catch (Exception e) {
+                        } catch (IllegalArgumentException e) {
                             e.printStackTrace();
-                            Toast.makeText(mContext, "SpenSignatureVerification is not loaded.",
+                            Toast.makeText(mContext, "SpenObjectStroke list is null.",
                                 Toast.LENGTH_SHORT).show();
                             return;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(mContext,
+                                "This signature is invalid for registration\n" +
+                                "Please try again!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } finally {
+                            mSpenPageDoc.removeAllObject();
+                            mSpenSurfaceView.update();
+                        }
+                        
+                        mSignatureRegistrationNum = mSpenSignatureVerification.getRegisteredCount();
+                        try {
+                            if (mSpenSignatureVerification.isRegistrationPrepared()) {
+                                mSpenSignatureVerification.completeRegistration();
+                                Toast.makeText(mContext,
+                                        "Signature registration is completed, you can start verify your signature",
+                                        Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(mContext, "Signature has been stored.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (Exception e1) {
+                            // TODO Auto-generated catch block
+                            e1.printStackTrace();
                         }
                     }
-
-                } else if (position == LIST_VERIFICATION_LEVEL) {
-
-					// Set the signature verification level.
-                    AlertDialog.Builder ab = new AlertDialog.Builder(
-                        PenSample5_7_SignatureVerification.this);
-
-                    mVerificationLevel =
-                        mSpenSignatureVerification.getVerificationLevel();
-
-                    String[] strLevel = { "Low", "Medium", "High" };
-
-                    ab.setTitle("Select verification level")
-                        .setSingleChoiceItems(strLevel, mVerificationLevel,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(
-                                        DialogInterface dialog, int which) {
-                                    mVerificationLevel = which;
-                                }
-                            })
-                        .setPositiveButton("Confirm",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void
-                                    onClick(DialogInterface dialog,
-                                        int whichButton) {
-                                    mSpenSignatureVerification
-                                        .setVerificationLevel(mVerificationLevel);
-                                    mSignatureAdapter
-                                        .notifyDataSetChanged();
-                                }
-                            }).setNegativeButton("Cancel", null).show();
+                    mSignatureAdapter.notifyDataSetChanged();
                 } else if (position == LIST_RETRY) {
-					// Purge the objects to start over.
+					// Remove all the objects to start over.
                     mSpenPageDoc.removeAllObject();
                     mSpenSurfaceView.update();
-                    Toast.makeText(mContext, "Draw your signature to verify.",
+                    Toast.makeText(mContext, "Draw your signature to register.",
                         Toast.LENGTH_SHORT).show();
                 }
             }
@@ -291,7 +256,6 @@ public class PenSample5_7_SignatureVerification extends Activity {
 
     }
 
-    // Items for ListView
     static class ListItem {
         ListItem(String iTitle, String isubTitle) {
             Title = iTitle;
@@ -302,7 +266,6 @@ public class PenSample5_7_SignatureVerification extends Activity {
         String subTitle;
     }
 
-    // Adapter class for list Item
     class ListAdapter extends BaseAdapter {
         LayoutInflater Inflater;
 
@@ -318,12 +281,12 @@ public class PenSample5_7_SignatureVerification extends Activity {
 
         @Override
         public Object getItem(int position) {
-            return mSignatureListItem.get(position);
+            return null;
         }
 
         @Override
         public long getItemId(int position) {
-            return position;
+            return 0;
         }
 
         @Override
@@ -334,36 +297,24 @@ public class PenSample5_7_SignatureVerification extends Activity {
                     R.layout.signature_list_item, parent, false);
             }
 
-            if (position == LIST_VERIFICATION) {
+            if (position == LIST_REGISRTATION) {
                 TextView title = (TextView) convertView
                     .findViewById(R.id.signature_list_title);
-
-                if (mVerificationLevel
-                    == SpenSignatureVerification.VERIFICATION_LEVEL_LOW) {
-                    title.setText(mSignatureListItem.get(position).Title
-                        + "  ( Level = Low )");
-                } else if (mVerificationLevel
-                    == SpenSignatureVerification.VERIFICATION_LEVEL_MEDIUM) {
-                    title.setText(mSignatureListItem.get(position).Title
-                        + "  ( Level = Medium )");
-                } else if (mVerificationLevel
-                    == SpenSignatureVerification.VERIFICATION_LEVEL_HIGH) {
-                    title.setText(mSignatureListItem.get(position).Title
-                        + "  ( Level = High )");
-                }
+                title.setText(mSignatureListItem.get(position).Title
+                    + " - ( " + mSignatureRegistrationNum + " / "
+                    + mSignatureRegistrationNumMax + " )");
 
                 TextView subtitle = (TextView) convertView
-                        .findViewById(R.id.signature_list_subtitle);
-                subtitle
-                    .setText(mSignatureListItem.get(position).subTitle);
+                    .findViewById(R.id.signature_list_subtitle);
+                subtitle.setText(mSignatureListItem.get(position).subTitle);
             } else {
                 TextView title = (TextView) convertView
-                        .findViewById(R.id.signature_list_title);
+                    .findViewById(R.id.signature_list_title);
                 title.setText(mSignatureListItem.get(position).Title);
+
                 TextView subtitle = (TextView) convertView
-                        .findViewById(R.id.signature_list_subtitle);
-                subtitle
-                    .setText(mSignatureListItem.get(position).subTitle);
+                    .findViewById(R.id.signature_list_subtitle);
+                subtitle.setText(mSignatureListItem.get(position).subTitle);
             }
             return convertView;
         }
