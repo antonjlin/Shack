@@ -14,6 +14,25 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="enter_parcel_name">Parcel name</string>
+    <string name="enter_tracking_id">Enter tracking ID</string>
+    <string name="confirm">Add package</string>
+    <string name="parcel1name">iphone</string>
+    <string name="parcel2name">shampoo</string>
+    <string name="parcel3name">note 8</string>
+    <string name="parcel4name">coffe</string>
+    <string name="parcel5name">water bottle</string>
+
+
+
+
+    <string-array name="carrier">
+        <item>USPS</item>
+        <item>UPS</item>
+        <item>FEDEX</item>
+        <item>DHL</item>
+        <item>ONPOST</item>
+    </string-array>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>

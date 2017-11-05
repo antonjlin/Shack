@@ -3,6 +3,9 @@
     package="com.samsung.shack">
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
+
+
+
     <uses-feature
         android:name="android.hardware.fingerprint"
         android:required="false" />
@@ -12,6 +15,8 @@
     <uses-permission android:name=
     "com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY"/>
     <application
+        android:resizeableActivity="true"
+        android:supportsPictureInPicture="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -32,6 +37,9 @@
         <activity
             android:name=".ProfileActivity"
             android:label="@string/title_activity_profile"></activity>
+        <activity
+            android:name=".NewParcelActivity"
+            android:label="@string/title_activity_login"></activity>
         <activity
             android:name=".ProfileActivities.SpenTestsActivity"
             android:label="@string/title_activity_spentests"></activity>

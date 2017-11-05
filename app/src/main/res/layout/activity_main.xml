@@ -15,34 +15,80 @@
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation" />
-
-    <FrameLayout
-        android:id="@+id/content"
+    <Button
+        android:id="@+id/parcel1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:text="@string/parcel1name"
+        android:textSize="30sp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorPrimary"
+        android:visibility="visible"
+        android:paddingBottom="20dp"/>
+    <Space
 
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+    android:layout_width="match_parent"
+    android:layout_height="20dp" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="25dp"
-            android:layout_marginLeft="340dp"
-            android:clickable="true"
-            app:elevation="5dp"
-            app:srcCompat="@android:drawable/ic_menu_add" />
+    <Button
+        android:id="@+id/parcel2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/parcel2name"
+        android:textSize="30sp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorPrimary"
+        android:visibility="visible"
+        android:paddingBottom="20dp"/>    <Space
+    android:layout_width="match_parent"
+    android:layout_height="20dp" />
 
+    <Button
+        android:id="@+id/parcel3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/parcel3name"
+        android:textSize="30sp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorPrimary"
+        android:visibility="visible"
+        android:paddingBottom="20dp"/>    <Space
+    android:layout_width="match_parent"
+    android:layout_height="20dp" />
 
-    </FrameLayout>
+    <Button
+        android:id="@+id/parcel4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/parcel4name"
+        android:textSize="30sp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorPrimary"
+        android:visibility="visible"
+        android:paddingBottom="20dp"/>    <Space
+    android:layout_width="match_parent"
+    android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/parcel5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "@string/parcel5name"
+        android:textSize="30sp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorPrimary"
+        android:visibility="visible"
+        android:paddingBottom="20dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="340dp"
+        android:clickable="true"
+        app:elevation="5dp"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
 </LinearLayout>
