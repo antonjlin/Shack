@@ -19,9 +19,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     Context mContext = this;
     private TextView mTextMessage;
-    public static final String prefs = "MyPrefsFile";
+    public static final String database = "database";
     static boolean loggedIn = false;
-
     //public static boolean loggedIn = false;
 
 
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
-        SharedPreferences settings = getSharedPreferences(prefs, 0);
+        SharedPreferences settings = getSharedPreferences(database, 0);
         loggedIn = settings.getBoolean("loggedIn", loggedIn);
         startLogin(loggedIn);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -76,12 +75,8 @@ public class MainActivity extends AppCompatActivity {
         //onProfileClicked();
     }
     public void onProfileClicked(){
-        Intent intent1 = new Intent(this, ProfileActivity.class);
-        startActivity(intent1);
-    }
-    public void onProfileClicked(View v){
-        Intent intent1 = new Intent(this, ProfileActivity.class);
-        startActivity(intent1);
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
 
@@ -96,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onStop(){
         super.onStop();
-        SharedPreferences settings = getSharedPreferences(prefs, 0);
+        SharedPreferences settings = getSharedPreferences(database, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean("loggedIn", loggedIn);
         editor.commit();

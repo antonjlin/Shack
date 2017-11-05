@@ -7,6 +7,7 @@ import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -156,6 +157,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        SharedPreferences settings = getSharedPreferences(MainActivity.database, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("email", email);
+        editor.putString("pass", password);
+        editor.commit();
 
         boolean cancel = false;
         View focusView = null;
