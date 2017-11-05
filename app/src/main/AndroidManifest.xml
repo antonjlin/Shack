@@ -33,7 +33,7 @@
             android:name=".ProfileActivity"
             android:label="@string/title_activity_profile"></activity>
         <activity
-            android:name=".ProfileActivities.SpenTests"
+            android:name=".ProfileActivities.SpenTestsActivity"
             android:label="@string/title_activity_spentests"></activity>
         <activity
             android:name=".ProfileActivities.SpenActivity"

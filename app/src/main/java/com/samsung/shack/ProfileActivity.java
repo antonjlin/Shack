@@ -1,6 +1,6 @@
 package com.samsung.shack;
 
-import android.app.Activity;
+//import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.samsung.shack.ProfileActivities.SpenTests;
+import com.samsung.shack.ProfileActivities.SpenTestsActivity;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -29,7 +29,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        final Intent setSignature = new Intent(this, SpenTests.class );
+        final Intent setSignature = new Intent(this, com.samsung.shack.ProfileActivities.SpenTestsActivity.class );
+
         final Intent loginPage = new Intent(this, LoginActivity.class );
 
 
