@@ -16,7 +16,6 @@
         android:id="@+id/fingerprint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
         android:text="Set Fingerprint"
         android:textSize="30dp"
         android:background="@drawable/roundedbutton"
@@ -31,17 +30,24 @@
         android:id="@+id/signature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
         android:text="Set Signature"
         android:textSize="30dp"
         android:background="@drawable/roundedbutton"
         android:backgroundTint="@color/colorPrimary"
         android:visibility="visible" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Log Out"
+        android:textSize="30dp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorPrimary"
+        android:visibility="visible" />
 
 </LinearLayout>
